@@ -1,11 +1,12 @@
 from fastapi import FastAPI, HTTPException, Query
 from typing import Optional
+import os
 from pydantic import BaseModel
 from motor.motor_asyncio import AsyncIOMotorClient
 from pymongo import MongoClient
 app = FastAPI()
 # MongoDB connection setup here atls step2
-connection_string='mongodb+srv://habiba:<db_password>@cluster0.brk2poz.mongodb.net/studentsDB?retryWrites=true&w=majority'
+connection_string=os.getenv("MONGO_URI")
 Client = MongoClient(connection_string)
 
 db = Client["studentsDB"]
